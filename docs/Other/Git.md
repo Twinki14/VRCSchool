@@ -1,5 +1,5 @@
 ---
-title: Git-based Unity Project Version Control
+title: Unity Project Version Control - Git
 sidebar_position: 9
 slug: Git-Project-Version-Control
 contributors: "[Twinki](https://github.com/Twinki14)"
@@ -7,11 +7,11 @@ contributors: "[Twinki](https://github.com/Twinki14)"
 Contributors: [Twinki](https://github.com/Twinki14)
 
 ## Version Control
-Version control, also referred to as source control, is the practice of tracking and managing changes to a collection of files.
+Version control, also referred to as source control, is the practice of tracking and managing changes to a collection of files
 
-It's typically used for software development where files are mostly text, but it can also be used for projects like Unity that contain many binary files such as textures, models, or materials.
+It's typically used for software development where files are mostly text, but it can also be used for projects like Unity that contain many binary files such as textures, models, or materials
 
-Version control enables history tracking of changes made to a collection of files.
+Version control enables history tracking of changes made to a collection of files
 
 ```mermaid
 graph LR
@@ -21,12 +21,12 @@ graph LR
 ```
 
 ## Git
-[A very popular open-source version & source control system](https://git-scm.com/about), you've interacted with it in some way if you've ever viewed a GitHub repository. This very page is stored in a Git repository.
+[A very popular open-source version & source control system](https://git-scm.com/about), you've interacted with it in some way if you've ever viewed a GitHub repository. This very page is stored in a Git repository
 
-- In **Unity**, a **collection files** is usually a Unity Project, such as a World or Avatar.
+- In **Unity**, a **collection files** is usually a Unity Project, such as a World or Avatar
 - In **Git**, a **collection of files** is a Repository,
-  - A saved set of changes to that repository is a Commit.
-  - The chronological sequence of those commits form the Commit History.
+  - A saved set of changes to that repository is a Commit
+  - The chronological sequence of those commits form the Commit History
 
 ```mermaid
 ---
@@ -44,13 +44,13 @@ gitGraph
     commit id: "Fix Avatar Descriptor"
 ```
 
-- Every commit records the files **added**, **modified**, or **deleted** in the repository since the **previous commit**.
-- For existing files, a **commit includes only the changes made to that file**.
-- Browsing the **commit history** will display what changes had been made since the **previous commit**.
+- Every commit records the files **added**, **modified**, or **deleted** in the repository since the **previous commit**
+- For existing files, a **commit includes only the changes made to that file**
+- Browsing the **commit history** will display what changes had been made since the **previous commit**
 
-Our **commit history** enables us to easily **checkout** of any commit in our commit tree.
+Our **commit history** enables us to easily **checkout** of any commit in our commit tree
 
-If after adjusting our Avatar Descriptor in `Fix Avatar Descriptor`, our Avatar for some reason broke, we could **checkout** of the previous commit `Add Glasses` and determine what may have gone wrong, or even get us back to a working avatar in the meantime.
+If after adjusting our Avatar Descriptor in `Fix Avatar Descriptor`, our Avatar for some reason broke, we could **checkout** of the previous commit `Add Glasses` and determine what may have gone wrong, or even get us back to a working avatar in the meantime
 
 ```mermaid
 ---
@@ -68,21 +68,21 @@ gitGraph
     commit id: "Fix Avatar Descriptor" type: REVERSE
 ```
 
-In short, every **commit** in a **repository** is a recorded point-in-time (a "version") and we as the user can go forwards or backwards to any **commit** we want.
+In short, every **commit** in a **repository** is a recorded point-in-time (a "version") and we as the user can go forwards or backwards to any **commit** we want
 
 ### Diffs
-Commits in Git represent changes made since the previous commit — this is what Git actually stores.
+Commits in Git represent changes made since the previous commit — this is what Git actually stores
 
-For text-based files, such as source code, storing the textual difference is preferred, as it makes it easier to browse our commit tree.
+For text-based files, such as source code, storing the textual difference is preferred, as it makes it easier to browse our commit tree
 
-For binary files (e.g.,`.png`, `.spp`, `.fbx`, `.obj`, `.jpeg`), which make up the majority of a Unity project, Git by default stores the entire file contents in each commit. This isn't ideal, because binary files cannot be efficiently diffed like text files, leading to very large repository histories that can quickly consume a lot of storage.
+For binary files (e.g.,`.png`, `.spp`, `.fbx`, `.obj`, `.jpeg`), which make up the majority of a Unity project, Git by default stores the entire file contents in each commit. This isn't ideal, because binary files cannot be efficiently diffed like text files, leading to very large repository histories that can quickly consume a lot of storage
 
 For Unity Projects, we need an extra solution
 
 ## Git LFS
-[Git LFS](https://git-lfs.com/) enables storing specific file types inside a repository as textual-pointers instead of flat-diffs as a Git extension.
+[Git LFS](https://git-lfs.com/) enables storing specific file types inside a repository as textual-pointers instead of flat-diffs as a Git extension
 
-This makes our repository far more space-efficient
+This makes primarily binary-focused repositories, such as Unity Project repositories, far more space-efficient
 
 
 ## Setting up a Git Repository for your VRC Avatar Unity Project
@@ -95,7 +95,7 @@ This assumes you already have a Unity Project created, and are mainly using it f
   - Only follow Step #1
 
 ### Git clients
-- [GitHub Desktop - Begineer friendly](https://desktop.github.com/download/)
+- [GitHub Desktop - Begineer friendly](https://github.com/apps/desktop)
 - [Fork - Less begineer friendly](https://git-fork.com/)
 
 ### Creating the repository
@@ -144,6 +144,7 @@ Assuming our project is located in `~\Documents\Projects\VRChat\Protogen`
 
 - GitHub Desktop handles almost everything else for you
 - Be sure **NOT** to publish the repository! Unless you know what you're doing
+- You may be prompted to initialize Git LFS, do so!
 - Visit the `.gitignore` and `.gitattribute` section to finish up
 
 </details>
@@ -157,11 +158,12 @@ Assuming our project is located in `~\Documents\Projects\VRChat\Protogen`
 Inside your Unity Projects **root** directory (`~\Documents\Projects\VRChat\Protogen`), excute these commmands using Git bash, Terminal, or Command Prompt
 
 ```bash
+cd "~\Documents\Projects\VRChat\Protogen"
 git init
 git branch -m main
 ```
 
-- You add/open this repository within any Git client if you wish
+- You can add/open this repository inside any Git client if you wish
 - Visit the `.gitignore` and `.gitattribute` section to finish up **before** making any commits!
 
 </details>
@@ -178,11 +180,12 @@ These files will **never** be picked up by Git, and never included in a commit*.
 <summary>.gitignore</summary>
 
 - In our projects root (`~\Documents\Projects\VRChat\Protogen`), create a `.gitignore` file if it doesn't already exist
-- Copy [the `Unity` preset .gitignore provided by GitHub](https://github.com/github/gitignore/blob/main/Unity.gitignore) into the file
+- Copy [the `Unity` preset .gitignore provided by GitHub](https://github.com/github/gitignore/blob/main/Unity.gitignore) contents into your own `.gitignore`
   - You can skip this if you selected the `Unity` Git ignore option in GitHub Desktop
+- **Note:** `.gitignore` **does not** end in a `.txt` or any file-extesion!
 
-These additions are also advised, simply add it to the end of any existing .gitignore
-```.gitignore
+These additions are advised, simply add it to the end of any existing `.gitignore`
+```yaml
 # Blender
 *.blend1
 *.blend1.meta
@@ -205,6 +208,111 @@ Assets/_VRCFury
 </details>
 
 ### .gitattributes
+`.gitattributes` is very similar to `.gitignore`, except instead of telling what Git to ignore, it tells Git **how** certain file should be treated
+
+For our use case, we'll primarily be using it to signal to Git which file-types should be treated as `Git LFS` tracked files
+
+<details>
+<summary>.gitattributes</summary>
+
+- In our projects root (`~\Documents\Projects\VRChat\Protogen`), create a `.gitattributes` file if it doesn't already exist
+- **Note:** `.gitattributes` **does not** end in a `.txt` or any file-extesion!
+- Copy the contents below, and **replace** existing contents
+
+```yaml
+# Default
+* text=auto
+
+# Unity files
+*.meta -text merge=unityyamlmerge diff
+*.unity -text merge=unityyamlmerge diff
+*.asset -text merge=unityyamlmerge diff
+*.prefab -text merge=unityyamlmerge diff
+*.mat -text merge=unityyamlmerge diff
+*.anim -text merge=unityyamlmerge diff
+*.controller -text merge=unityyamlmerge diff
+*.overrideController -text merge=unityyamlmerge diff
+*.physicMaterial -text merge=unityyamlmerge diff
+*.physicsMaterial2D -text merge=unityyamlmerge diff
+*.playable -text merge=unityyamlmerge diff
+*.mask -text merge=unityyamlmerge diff
+*.brush -text merge=unityyamlmerge diff
+*.flare -text merge=unityyamlmerge diff
+*.fontsettings -text merge=unityyamlmerge diff
+*.guiskin -text merge=unityyamlmerge diff
+*.giparams -text merge=unityyamlmerge diff
+*.renderTexture -text merge=unityyamlmerge diff
+*.spriteatlas -text merge=unityyamlmerge diff
+*.terrainlayer -text merge=unityyamlmerge diff
+*.mixer -text merge=unityyamlmerge diff
+*.shadervariants -text merge=unityyamlmerge diff
+
+# Image formats
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
+*.bmp filter=lfs diff=lfs merge=lfs -text
+*.tga filter=lfs diff=lfs merge=lfs -text
+*.tiff filter=lfs diff=lfs merge=lfs -text
+*.tif filter=lfs diff=lfs merge=lfs -text
+*.iff filter=lfs diff=lfs merge=lfs -text
+*.pict filter=lfs diff=lfs merge=lfs -text
+*.dds filter=lfs diff=lfs merge=lfs -text
+*.xcf filter=lfs diff=lfs merge=lfs -text
+*.spp filter=lfs diff=lfs merge=lfs -text
+
+# Audio formats
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.ogg filter=lfs diff=lfs merge=lfs -text
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.aiff filter=lfs diff=lfs merge=lfs -text
+*.aif filter=lfs diff=lfs merge=lfs -text
+*.mod filter=lfs diff=lfs merge=lfs -text
+*.it filter=lfs diff=lfs merge=lfs -text
+*.s3m filter=lfs diff=lfs merge=lfs -text
+*.xm filter=lfs diff=lfs merge=lfs -text
+
+# Video formats
+*.mov filter=lfs diff=lfs merge=lfs -text
+*.avi filter=lfs diff=lfs merge=lfs -text
+*.asf filter=lfs diff=lfs merge=lfs -text
+*.mpg filter=lfs diff=lfs merge=lfs -text
+*.mpeg filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+
+# 3D formats
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+*.max filter=lfs diff=lfs merge=lfs -text
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.dae filter=lfs diff=lfs merge=lfs -text
+*.mb filter=lfs diff=lfs merge=lfs -text
+*.ma filter=lfs diff=lfs merge=lfs -text
+*.3ds filter=lfs diff=lfs merge=lfs -text
+*.dfx filter=lfs diff=lfs merge=lfs -text
+*.c4d filter=lfs diff=lfs merge=lfs -text
+*.lwo filter=lfs diff=lfs merge=lfs -text
+*.lwo2 filter=lfs diff=lfs merge=lfs -text
+*.abc filter=lfs diff=lfs merge=lfs -text
+*.3dm filter=lfs diff=lfs merge=lfs -text
+
+# Build
+*.dll filter=lfs diff=lfs merge=lfs -text
+*.pdb filter=lfs diff=lfs merge=lfs -text
+*.mdb filter=lfs diff=lfs merge=lfs -text
+
+# Packaging
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.7z filter=lfs diff=lfs merge=lfs -text
+*.gz filter=lfs diff=lfs merge=lfs -text
+*.rar filter=lfs diff=lfs merge=lfs -text
+*.tar filter=lfs diff=lfs merge=lfs -text
+*.unitypackage filter=lfs diff=lfs merge=lfs -text
+```
+
+</details>
+
 
 ## Using your Git Repository
 
@@ -212,25 +320,29 @@ Assets/_VRCFury
 
 ### Checking out of commits (going back in-time)
 
-
 ## FAQ
+
+### Does this work with VCC?
+
+Yes! [VCC natively supports Source Control](https://vcc.docs.vrchat.com/vpm/source-control)
 
 ### How does this compare to VCC backups?
 
 VCC / Unity Project backups are,
 - **Complete copies of your entire Unity Project**
-- Very bulky, not very space or time efficient.
-- You can't easily browse them, if you wanted to look at how a blender model changed between two points of time, you'd have to unpack entire backups.
+- Very bulky, not very space or time efficient
+- You can't easily browse them, if you wanted to look at how a blender model changed between two points of time, you'd have to unpack entire backups
 
 Whereas Git is,
 - Slightly more technical
-- It **can be** bulky still depending on how frequently you make commits, and what's in those commits.
-  - Frequent commits of large binary files like Substance Painter Files can stack-up and increase the overall repository size.
-  - Git has to store the differences between commits, even with Git LFS which increases space efficiency, it can still grow quite big over time.
+- It **can be** bulky still depending on how frequently you make commits, and what's in those commits
+  - Frequent commits of large binary files like Substance Painter Files can stack-up and increase the overall repository size
+  - Git has to store the differences between commits, even with Git LFS which increases space efficiency, it can still grow quite big over time
   - [Though there are ways of mitigating this](./#afd25e85748e460eb7d5114d5a2a23af)
-- The repository itself should still be backed up in some way, be it a remote Git server or a similar VCC-style .zip backup and stored somewhere else.
-  - GitHub has repository space limitations, so you can't really use GitHub for hosting your repository.
-- **BUT** has the benefit of a **Commit History**.
+- The repository itself ideally would still be backed up somewhere outside your drive, be it a remote Git server or a similar VCC-style .zip backup
+  - GitHub has repository storage limitations, so you can't really use GitHub for hosting your repository unless you want to pay for it
+  - It's only advisable to backup your repository so that you don't lose it to drive failure
+- **BUT** has the benefit of a **Commit History**
 
 ### I don't want to use this anymore!
 
